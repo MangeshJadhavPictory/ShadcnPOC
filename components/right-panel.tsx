@@ -10,6 +10,7 @@ import {
   RotateCcw,
   Underline,
   MoreVertical,
+  ChevronRight,
 } from "lucide-react";
 import {
   Dialog,
@@ -48,6 +49,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { Icons } from "@/components/icons";
 
 export function RightPanel() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -106,7 +108,7 @@ export function RightPanel() {
           <SelectTrigger className="w-32 h-8 border-0 bg-muted px-2 text-xs outline-none ring-0 focus:ring-0 ring-offset-0 focus:ring-transparent">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent className="bg-popover border-border">
+          <SelectContent className="bg-popover">
             <SelectItem value="poppins" className="text-xs">
               Poppins
             </SelectItem>
@@ -256,9 +258,9 @@ export function RightPanel() {
                             value={`file-${index}`}
                             className="px-2 border-none"
                           >
-                            <div className="flex items-center justify-between h-[46px] group bg-red-500">
+                            <div className="flex items-center justify-between h-[46px] group w-full [&>h3]:w-full [&>Button]:p-0">
                               <AccordionTrigger
-                                className="flex-1 gap-2 [&>svg]:order-first no-underline hover:no-underline p-0 h-full"
+                                className="flex-1 gap-2 no-underline hover:no-underline data-[state=open]:bg-red-500 [&>h3]:w-full"
                                 disabled={!isZip}
                               >
                                 {file.name}
@@ -385,60 +387,70 @@ export function RightPanel() {
                         value="google-fonts"
                         className="px-2 border-none"
                       >
-                        <div className="flex items-center justify-between h-[46px] group bg-red-500">
-                          <AccordionTrigger className="flex-1 gap-2 [&>svg]:order-first [&>svg]:w-6 [&>svg]:h-6 [&>svg]:p-[5px] no-underline hover:no-underline">
-                            Google Fonts
+                        <div className="flex items-center justify-between h-[46px] group w-full [&>h3]:w-full">
+                          <AccordionTrigger className="flex-1 gap-2 [&>svg]:order-first [&>svg]:w-6 [&>svg]:h-6 [&>svg]:p-[5px] no-underline hover:no-underline [&>h3]:w-full p-0">
+                            <span className="text-base font-normal leading-[150%] font-inter">
+                              Google Fonts
+                            </span>
                           </AccordionTrigger>
-                          <Popover>
-                            <PopoverTrigger asChild>
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                className="h-8 w-8 opacity-0 group-hover:opacity-100"
-                              >
-                                <svg
-                                  width="16"
-                                  height="16"
-                                  viewBox="0 0 16 16"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M8 8.66667C8.36819 8.66667 8.66667 8.36819 8.66667 8C8.66667 7.63181 8.36819 7.33334 8 7.33334C7.63181 7.33334 7.33333 7.63181 7.33333 8C7.33333 8.36819 7.63181 8.66667 8 8.66667Z"
-                                    stroke="currentColor"
-                                    strokeWidth="1.33333"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                  <path
-                                    d="M12.6667 8.66667C13.0349 8.66667 13.3333 8.36819 13.3333 8C13.3333 7.63181 13.0349 7.33334 12.6667 7.33334C12.2985 7.33334 12 7.63181 12 8C12 8.36819 12.2985 8.66667 12.6667 8.66667Z"
-                                    stroke="currentColor"
-                                    strokeWidth="1.33333"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                  <path
-                                    d="M3.33333 8.66667C3.70152 8.66667 4 8.36819 4 8C4 7.63181 3.70152 7.33334 3.33333 7.33334C2.96514 7.33334 2.66666 7.63181 2.66666 8C2.66666 8.36819 2.96514 8.66667 3.33333 8.66667Z"
-                                    stroke="currentColor"
-                                    strokeWidth="1.33333"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                </svg>
-                              </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-[84px] flex flex-col items-start py-2 px-0 gap-2">
-                              <Button
-                                variant="ghost"
-                                className="p-0 h-[36px] w-full flex items-center justify-center text-red-600"
-                                onClick={() =>
-                                  handleDeleteClick("Google Fonts")
-                                }
-                              >
-                                Delete
-                              </Button>
-                            </PopoverContent>
-                          </Popover>
+
+                          <div className="flex items-center gap-2">
+                            <span className="text-[#6C6C6C] font-inter text-xs font-normal leading-[150%] w-max">
+                              4 variants
+                            </span>
+                            <div onClick={(e) => e.stopPropagation()}>
+                              <Popover>
+                                <PopoverTrigger asChild>
+                                  <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-8 w-8 opacity-0 group-hover:opacity-100"
+                                  >
+                                    <svg
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 16 16"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M8 8.66667C8.36819 8.66667 8.66667 8.36819 8.66667 8C8.66667 7.63181 8.36819 7.33334 8 7.33334C7.63181 7.33334 7.33333 7.63181 7.33333 8C7.33333 8.36819 7.63181 8.66667 8 8.66667Z"
+                                        stroke="currentColor"
+                                        strokeWidth="1.33333"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                      />
+                                      <path
+                                        d="M12.6667 8.66667C13.0349 8.66667 13.3333 8.36819 13.3333 8C13.3333 7.63181 13.0349 7.33334 12.6667 7.33334C12.2985 7.33334 12 7.63181 12 8C12 8.36819 12.2985 8.66667 12.6667 8.66667Z"
+                                        stroke="currentColor"
+                                        strokeWidth="1.33333"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                      />
+                                      <path
+                                        d="M3.33333 8.66667C3.70152 8.66667 4 8.36819 4 8C4 7.63181 3.70152 7.33334 3.33333 7.33334C2.96514 7.33334 2.66666 7.63181 2.66666 8C2.66666 8.36819 2.96514 8.66667 3.33333 8.66667Z"
+                                        stroke="currentColor"
+                                        strokeWidth="1.33333"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                      />
+                                    </svg>
+                                  </Button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-[84px] flex flex-col items-start py-2 px-0 gap-2">
+                                  <Button
+                                    variant="ghost"
+                                    className="p-0 h-[36px] w-full flex items-center justify-center text-red-600"
+                                    onClick={() =>
+                                      handleDeleteClick("Google Fonts")
+                                    }
+                                  >
+                                    Delete
+                                  </Button>
+                                </PopoverContent>
+                              </Popover>
+                            </div>
+                          </div>
                         </div>
                         <AccordionContent className="flex flex-col items-start gap-[10px] px-0 self-stretch">
                           <div className="flex flex-col items-start gap-2 rounded-lg w-full mx-auto">
@@ -466,93 +478,6 @@ export function RightPanel() {
                                 )}
                               </div>
                             ))}
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-
-                      <AccordionItem
-                        value="system-fonts"
-                        className="px-2 py-1.5 border-none"
-                      >
-                        <div className="flex items-center justify-between h-[44px] group bg-red-500">
-                          <AccordionTrigger className="flex-1 gap-2 [&>svg]:order-first [&>svg]:w-6 [&>svg]:h-6 [&>svg]:p-[5px] no-underline hover:no-underline">
-                            System Fonts
-                          </AccordionTrigger>
-                          <Popover>
-                            <PopoverTrigger asChild>
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                className="h-8 w-8 opacity-0 group-hover:opacity-100"
-                              >
-                                <svg
-                                  width="16"
-                                  height="16"
-                                  viewBox="0 0 16 16"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M8 8.66667C8.36819 8.66667 8.66667 8.36819 8.66667 8C8.66667 7.63181 8.36819 7.33334 8 7.33334C7.63181 7.33334 7.33333 7.63181 7.33333 8C7.33333 8.36819 7.63181 8.66667 8 8.66667Z"
-                                    stroke="currentColor"
-                                    strokeWidth="1.33333"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                  <path
-                                    d="M12.6667 8.66667C13.0349 8.66667 13.3333 8.36819 13.3333 8C13.3333 7.63181 13.0349 7.33334 12.6667 7.33334C12.2985 7.33334 12 7.63181 12 8C12 8.36819 12.2985 8.66667 12.6667 8.66667Z"
-                                    stroke="currentColor"
-                                    strokeWidth="1.33333"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                  <path
-                                    d="M3.33333 8.66667C3.70152 8.66667 4 8.36819 4 8C4 7.63181 3.70152 7.33334 3.33333 7.33334C2.96514 7.33334 2.66666 7.63181 2.66666 8C2.66666 8.36819 2.96514 8.66667 3.33333 8.66667Z"
-                                    stroke="currentColor"
-                                    strokeWidth="1.33333"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                </svg>
-                              </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-[84px] flex flex-col items-start py-2 px-0 gap-2">
-                              <Button
-                                variant="ghost"
-                                className="p-0 h-[36px] w-full flex items-center justify-center text-red-600"
-                                onClick={() =>
-                                  handleDeleteClick("System Fonts")
-                                }
-                              >
-                                Delete
-                              </Button>
-                            </PopoverContent>
-                          </Popover>
-                        </div>
-                        <AccordionContent className="flex flex-col items-start gap-[10px] px-0 self-stretch">
-                          <div className="flex flex-col items-start gap-2 rounded-lg w-full mx-auto">
-                            <div className="flex items-center justify-between w-full bg-gray-100 h-[36px] pl-9 rounded-lg">
-                              <div className="flex items-center space-x-2  ">
-                                <span className="font-bold text-black text-sm">
-                                  Bold
-                                </span>
-                                <span className="text-gray-600 text-xs">
-                                  Pictory+Sans_1440_oblique.ttf
-                                </span>
-                              </div>
-                              <div className="relative w-6 h-6 rounded">
-                                <button className="absolute w-6 h-6 p-0.5 bg-transparent">
-                                  <div
-                                    className="absolute w-5 h-5"
-                                    style={{
-                                      background:
-                                        "url('./assets/images/0ec4bc19-36a4-41dc-adc9-a7f7a8a2de5b.png') no-repeat center",
-                                      backgroundSize: "cover",
-                                    }}
-                                  ></div>
-                                </button>
-                              </div>
-                            </div>
                           </div>
                         </AccordionContent>
                       </AccordionItem>
